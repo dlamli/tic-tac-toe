@@ -1,13 +1,18 @@
-import { useId } from "react";
 import GameBoardColumn from "./GameBoardColumn";
+import { GameBoardRowProps } from "../libs/types";
 
-const GameBoardRow = ({ row }: { row: (string | null)[] }) => {
-  const columnId = useId();
+const GameBoardRow = ({ row, rowIndex, onClick }: GameBoardRowProps) => {
   return (
     <li>
       <ol>
-        {row.map((playerSymbol) => (
-          <GameBoardColumn key={columnId} playerSymbol={playerSymbol} />
+        {row.map((playerSymbol, colIndex) => (
+          <GameBoardColumn
+            key={colIndex}
+            rowIndex={rowIndex}
+            colIndex={colIndex}
+            playerSymbol={playerSymbol}
+            onClick={onClick}
+          />
         ))}
       </ol>
     </li>

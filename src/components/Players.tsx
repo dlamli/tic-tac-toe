@@ -1,12 +1,19 @@
-import { PLAYERS } from "../libs/constants";
+import { PlayersProps } from "../libs/types";
 import Player from "./Player";
 
-const Players = () => {
+const Players = ({ activePlayer }: PlayersProps) => {
   return (
-    <ol id="players">
-      {PLAYERS.map((player) => (
-        <Player playerName={player.playerName} symbol={player.symbol} />
-      ))}
+    <ol id="players" className="highlight-player">
+      <Player
+        playerName="Player#1"
+        symbol="X"
+        isActive={activePlayer === "X"}
+      />
+      <Player
+        playerName="Player#2"
+        symbol="O"
+        isActive={activePlayer === "O"}
+      />
     </ol>
   );
 };

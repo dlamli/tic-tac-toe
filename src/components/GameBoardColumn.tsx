@@ -1,7 +1,16 @@
-const GameBoardColumn = ({ playerSymbol }: { playerSymbol: string | null }) => {
+import { GameBoardColumnProps } from "../libs/types";
+
+const GameBoardColumn = ({
+  rowIndex,
+  colIndex,
+  playerSymbol,
+  onClick,
+}: GameBoardColumnProps) => {
   return (
     <li>
-      <button>{playerSymbol}</button>
+      <button onClick={() => onClick(rowIndex, colIndex)}>
+        {playerSymbol}
+      </button>
     </li>
   );
 };
