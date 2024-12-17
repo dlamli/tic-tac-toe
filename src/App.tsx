@@ -1,25 +1,20 @@
 import { useState } from "react";
 
-import { GameBoardSymbol, GameTurnProps } from "./libs/types";
 import GameBoard from "./components/GameBoard";
 import Players from "./components/Players";
 import Log from "./components/Log";
 
+import { GameTurnProps } from "./libs/types";
+import { deriveActivePlayer } from "./libs/utils";
+
 function App() {
   const [gameTurns, setGameTurns] = useState<GameTurnProps[]>([]);
-  const [activePlayer, setActivePlayer] = useState<GameBoardSymbol>("X");
+
+  const activePlayer = deriveActivePlayer(gameTurns);
 
   const handleSelectSquare = (rowIndex: number, colIndex: number) => {
-    setActivePlayer((prevActivePlayer) =>
-      prevActivePlayer === "X" ? "O" : "X"
-    );
     setGameTurns((prevTurns) => {
-      let currentPlayer: GameBoardSymbol = "X";
-
-      if (prevTurns.length > 0 && prevTurns[0].player === currentPlayer) {
-        currentPlayer = "O";
-      }
-
+      const currentPlayer = deriveActivePlayer(prevTurns);
       const updatedTurns = [
         { square: { row: rowIndex, col: colIndex }, player: currentPlayer },
         ...prevTurns,
