@@ -44,7 +44,11 @@ export interface GameOverProps {
   onRestart: () => void;
 }
 
-export type InitialGameBoardProps = string | null;
+export interface Players {
+  [key: string]: string;
+}
+
+export type InitialGameBoardProps =  string | null;
 
 export type WinningCombinationProps = {
   row: number;

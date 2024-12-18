@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { deriveActivePlayer } from "../libs/utils";
-import { GameBoardSymbol, GameTurnProps } from "../libs/types";
+import { GameTurnProps, Players } from "../libs/types";
 import { initialGameBoard, WINNING_COMBINATIONS } from "../libs/constants";
 
 export const useGameTurn = () => {
-  const [players, setPlayers] = useState<{
-    [key in GameBoardSymbol]: string;
-  }>({
+  const [players, setPlayers] = useState<Players>({
     X: "Player#1",
     O: "Player#2",
   });
@@ -35,7 +33,7 @@ export const useGameTurn = () => {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thirdSquareSymbol
     ) {
-      winner = players[firstSquareSymbol as keyof typeof players];
+      winner = players[firstSquareSymbol];
     }
   }
 

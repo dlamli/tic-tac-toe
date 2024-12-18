@@ -10,9 +10,7 @@ export const usePlayer = (
 
   const handleEditClick = useCallback(() => {
     setIsEditing((prevIsEditing) => !prevIsEditing);
-    if (isEditing) {
-      onChangeName(symbol, playerName);
-    }
+    if (isEditing) onChangeName(symbol, playerName);
   }, [isEditing, onChangeName, playerName, symbol]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
