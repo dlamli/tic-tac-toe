@@ -1,9 +1,18 @@
 import { PlayerProps } from "../libs/types";
 import { usePlayer } from "../hooks/usePlayer";
 
-const Player = ({ playerName: initialName, symbol, isActive }: PlayerProps) => {
-  const { isEditing, playerName, handleEditClick, handleChange } =
-    usePlayer(initialName);
+const Player = ({
+  playerName: initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}: PlayerProps) => {
+
+  const { isEditing, playerName, handleEditClick, handleChange } = usePlayer(
+    initialName,
+    symbol,
+    onChangeName
+  );
 
   return (
     <li className={isActive ? "active" : ""}>

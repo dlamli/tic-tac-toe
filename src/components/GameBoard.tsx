@@ -1,13 +1,7 @@
-import { GameBoardProps, InitialGameBoardProps } from "../libs/types";
+import { GameBoardProps } from "../libs/types";
 import GameBoardRow from "./GameBoardRow";
 
-const initialGameBoard: InitialGameBoardProps = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-const GameBoard = ({ onSelectSquare, gameTurns }: GameBoardProps) => {
+const GameBoard = ({ onSelectSquare, board }: GameBoardProps) => {
   // const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   // const handleSelectSquare = (rowIndex: number, colIndex: number) => {
@@ -22,18 +16,9 @@ const GameBoard = ({ onSelectSquare, gameTurns }: GameBoardProps) => {
   //   onSelectSquare();
   // };
 
-  const gameBoard = initialGameBoard;
-
-  for (const turn of gameTurns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    gameBoard[row][col] = player;
-  }
-
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <GameBoardRow
           key={rowIndex}
           rowIndex={rowIndex}

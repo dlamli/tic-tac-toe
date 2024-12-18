@@ -5,7 +5,7 @@ const GameBoardRow = ({ row, rowIndex, onClick }: GameBoardRowProps) => {
   return (
     <li>
       <ol>
-        {row.map((playerSymbol, colIndex) => (
+        {Array.isArray(row) && row.map((playerSymbol, colIndex) => (
           <GameBoardColumn
             key={colIndex}
             rowIndex={rowIndex}

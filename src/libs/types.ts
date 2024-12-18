@@ -2,21 +2,23 @@ export type GameBoardSymbol = "X" | "O";
 
 export interface PlayersProps {
   activePlayer: GameBoardSymbol;
+  onPlayerNameChange: (symbol: string, newName: string) => void;
 }
 
 export interface PlayerProps {
   playerName: string;
   symbol: string;
   isActive: boolean;
+  onChangeName: (symbol: string, newName: string) => void;
 }
 
 export interface GameBoardProps {
   onSelectSquare: (rowIndex: number, colIndex: number) => void;
-  gameTurns: GameTurnProps[];
+  board: GameTurnProps[] | InitialGameBoardProps[][];
 }
 
 export interface GameBoardRowProps {
-  row: (string | null)[];
+  row: GameTurnProps | InitialGameBoardProps[];
   rowIndex: number;
   onClick: (rowIndex: number, colIndex: number) => void;
 }
@@ -37,4 +39,14 @@ export interface LogProps {
   gameTurns: GameTurnProps[];
 }
 
-export type InitialGameBoardProps = (string | null)[][];
+export interface GameOverProps {
+  winner: GameBoardSymbol | string | undefined;
+  onRestart: () => void;
+}
+
+export type InitialGameBoardProps = string | null;
+
+export type WinningCombinationProps = {
+  row: number;
+  col: number;
+};
