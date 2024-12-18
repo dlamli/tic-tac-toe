@@ -48,6 +48,10 @@ export interface Players {
   [key: string]: string;
 }
 
+export interface GameResultProps {
+  content: string;
+}
+
 export type InitialGameBoardProps =  string | null;
 
 export type WinningCombinationProps = {
