@@ -1,4 +1,8 @@
-import { InitialGameBoardProps, Players, WinningCombinationProps } from "./types";
+import {
+  InitialGameBoardProps,
+  Players,
+  WinningCombinationProps,
+} from "./types";
 
 export const INITIAL_GAME_BOARD: InitialGameBoardProps[][] = [
   [null, null, null],
@@ -52,4 +56,9 @@ export const WINNING_COMBINATIONS: WinningCombinationProps[][] = [
 export const PLAYERS: Players = {
   X: "Player#1",
   O: "Player#2",
+};
+
+export const PLAYERS_SYMBOL = {
+  X: "X",
+  O: "O",
 };

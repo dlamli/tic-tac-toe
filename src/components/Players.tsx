@@ -1,4 +1,4 @@
-import { PLAYERS } from "../libs/constants";
+import { PLAYERS, PLAYERS_SYMBOL } from "../libs/constants";
 import { PlayersProps } from "../libs/types";
 import Player from "./Player";
 
@@ -7,14 +7,14 @@ const Players = ({ activePlayer, onPlayerNameChange }: PlayersProps) => {
     <ol id="players" className="highlight-player">
       <Player
         playerName={PLAYERS.X}
-        symbol="X"
-        isActive={activePlayer === "X"}
+        symbol={PLAYERS_SYMBOL.X}
+        isActive={activePlayer === PLAYERS_SYMBOL.X}
         onChangeName={onPlayerNameChange}
       />
       <Player
         playerName={PLAYERS.O}
-        symbol="O"
-        isActive={activePlayer === "O"}
+        symbol={PLAYERS_SYMBOL.O}
+        isActive={activePlayer === PLAYERS_SYMBOL.O}
         onChangeName={onPlayerNameChange}
       />
     </ol>
