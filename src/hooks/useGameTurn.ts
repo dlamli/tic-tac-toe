@@ -1,41 +1,19 @@
 import { useState } from "react";
-import { deriveActivePlayer } from "../libs/utils";
+import {
+  deriveActivePlayer,
+  deriveGameBoard,
+  deriveWinner,
+} from "../libs/utils";
 import { GameTurnProps, Players } from "../libs/types";
-import { initialGameBoard, WINNING_COMBINATIONS } from "../libs/constants";
+import { PLAYERS } from "../libs/constants";
 
 export const useGameTurn = () => {
-  const [players, setPlayers] = useState<Players>({
-    X: "Player#1",
-    O: "Player#2",
-  });
+  const [players, setPlayers] = useState<Players>(PLAYERS);
   const [gameTurns, setGameTurns] = useState<GameTurnProps[]>([]);
 
   const activePlayer = deriveActivePlayer(gameTurns);
-  const gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
-
-  for (const turn of gameTurns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    gameBoard[row][col] = player;
-  }
-
-  let winner;
-
-  for (const combination of WINNING_COMBINATIONS) {
-    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].col];
-    const secondSquareSymbol =
-      gameBoard[combination[1].row][combination[1].col];
-    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].col];
-
-    if (
-      firstSquareSymbol &&
-      firstSquareSymbol === secondSquareSymbol &&
-      firstSquareSymbol === thirdSquareSymbol
-    ) {
-      winner = players[firstSquareSymbol];
-    }
-  }
+  const gameBoard = deriveGameBoard(gameTurns);
+  const winner = deriveWinner(gameBoard, players);
 
   const handleSelectSquare = (rowIndex: number, colIndex: number) => {
     setGameTurns((prevTurns) => {
